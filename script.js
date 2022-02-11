@@ -23,7 +23,15 @@ let equalsButton = document.querySelector('.equals');
 function clearDisplay() {
     let remove = document.querySelector('#display');
     remove.textContent = null
+    
 }
+function displayValueInitial() {
+    document.getElementsByClassName('.number').textContent = this.value;
+    let display = document.querySelector('#display');
+    display.textContent += this.value
+    currentValue = display.textContent
+    return currentValue
+};
 
 function initialCalc() {
     let num1 = currentValue
@@ -40,14 +48,6 @@ function finalCalc() {
     operate(equation.operator, equation.firstValue, equation.finalValue)
 }
 
-
-function displayValueInitial() {
-    document.getElementsByClassName('.number').textContent = this.value;
-    let display = document.querySelector('#display');
-    display.textContent += this.value
-    currentValue = display.textContent
-    return currentValue
-};
 
 function displayValueFinal(answer) {
     equation.firstValue = answer;
@@ -75,7 +75,8 @@ function multiply(num1,num2) {
 
 function divide(num1,num2) {
     if (num1 === 0 || num2 === 0) {
-        alert('Error, dividing by 0 is hard');
+        //divideByZero();
+        alert('you suck')
     } {
     let quotient = num1/num2;
     displayValueFinal(quotient)
@@ -98,4 +99,22 @@ function operate(operator,num1,num2) {
             break;
     }
 }
+
+/*function divideByZero() {
+    let random = Math.floor(Math.random()*10)
+    snarky = random === 0? 'lmao'
+    :random === 1? 'f off ya wanker'
+    :random === 2? 'self destruct initiated'
+    :random === 3? 'c'
+    :random === 4? 'd'
+    :random === 5? 'e'
+    :random === 6? 'f'
+    :random === 7? 'g'
+    :random === 8? 'h'
+    :random === 9? 'bleh'
+    : 'eff off'
+    let display = document.querySelector('#display');
+    display.textContent = snarky
+//when user hits another button it resets calculator
+}*/
 
