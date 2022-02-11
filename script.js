@@ -1,41 +1,66 @@
-//to do next:
-//displayValue replace console log with something that sends this.value to display and keeps it there.
-//function to take displays contents and send to operate function
-//let display = document.getElementsByClassName('display');
-let buttons = document.querySelectorAll('.input');
+let currentValue
+let equation = {
+}
+
+let buttons = document.querySelectorAll('.number');
     buttons.forEach(buttons => {
     buttons.addEventListener('click', displayValue);
+    });
+
+let operatorButton = document.querySelectorAll('.operator');
+    operatorButton.forEach(operatorButton => {
+    operatorButton.addEventListener('click', initialCalc)
     });
 
 let clearButton = document.querySelector('.clear');
     clearButton.addEventListener('click', clearDisplay);
 
+let equalsButton = document.querySelector('.equals');
+    equalsButton.addEventListener('click', finalCalc)
+
+
+function initialCalc() {
+let num1 = currentValue
+let operatorSymbol = document.getElementsByClassName('.operator').textContent = this.value
+equation.firstValue = parseInt(num1);
+equation.operator = operatorSymbol;
+clearDisplay()
+}
+
+function finalCalc() {
+let num2 = currentValue
+equation.finalValue = parseInt(num2)
+clearDisplay()
+operate(equation.operator, equation.firstValue, equation.finalValue)
+}
+
 
 function displayValue() {
-    document.getElementsByClassName('input').textContent = this.value;
+    document.getElementsByClassName('.number').textContent = this.value;
     let display = document.querySelector('#display');
     display.textContent += this.value
-    return this.value
+    currentValue = display.textContent
+    return currentValue
 };
 
-function clearDisplay(display) {
+function clearDisplay() {
     let remove = document.querySelector('#display');
     remove.textContent = null
     }
 
 function add (num1,num2) {
     let sum = num1 + num2;
-    return sum;
+    console.log(sum);
 };
 
 function subtract(num1,num2) {
     let difference = num1 - num2;
-    return difference;
+    console.log(difference);
 };
 
 function multiply(num1,num2) {
     let product = num1 * num2;
-    return product;
+    console.log(product);
 } ;
 
 function divide(num1,num2) {
@@ -43,7 +68,7 @@ function divide(num1,num2) {
         alert('Error, dividing by 0 is hard');
     } {
     let quotient = num1/num2;
-    return quotient;
+    console.log(quotient);
     }
 };
 
