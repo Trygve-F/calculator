@@ -2,9 +2,11 @@ let currentValue
 let equation = {
 }
 
+
 let buttons = document.querySelectorAll('.number');
     buttons.forEach(buttons => {
-    buttons.addEventListener('click', displayValue);
+    buttons.addEventListener('click', displayValueInitial
+);
     });
 
 let operatorButton = document.querySelectorAll('.operator');
@@ -18,24 +20,28 @@ let clearButton = document.querySelector('.clear');
 let equalsButton = document.querySelector('.equals');
     equalsButton.addEventListener('click', finalCalc)
 
+function clearDisplay() {
+    let remove = document.querySelector('#display');
+    remove.textContent = null
+}
 
 function initialCalc() {
-let num1 = currentValue
-let operatorSymbol = document.getElementsByClassName('.operator').textContent = this.value
-equation.firstValue = parseInt(num1);
-equation.operator = operatorSymbol;
-clearDisplay()
+    let num1 = currentValue
+    let operatorSymbol = document.getElementsByClassName('.operator').textContent = this.value
+    equation.firstValue = parseInt(num1);
+    equation.operator = operatorSymbol;
+    clearDisplay()
 }
 
 function finalCalc() {
-let num2 = currentValue
-equation.finalValue = parseInt(num2)
-clearDisplay()
-operate(equation.operator, equation.firstValue, equation.finalValue)
+    let num2 = currentValue
+    equation.finalValue = parseInt(num2)
+    clearDisplay()
+    operate(equation.operator, equation.firstValue, equation.finalValue)
 }
 
 
-function displayValue() {
+function displayValueInitial() {
     document.getElementsByClassName('.number').textContent = this.value;
     let display = document.querySelector('#display');
     display.textContent += this.value
@@ -43,24 +49,28 @@ function displayValue() {
     return currentValue
 };
 
-function clearDisplay() {
-    let remove = document.querySelector('#display');
-    remove.textContent = null
-    }
+function displayValueFinal(answer) {
+    equation.firstValue = answer;
+    let display = document.querySelector('#display');
+    display.textContent = answer;
+    currentValue = answer
+}
 
+
+//HELPER FUNCTIONS
 function add (num1,num2) {
     let sum = num1 + num2;
-    console.log(sum);
+    displayValueFinal(sum)
 };
 
 function subtract(num1,num2) {
     let difference = num1 - num2;
-    console.log(difference);
+    displayValueFinal(difference)
 };
 
 function multiply(num1,num2) {
     let product = num1 * num2;
-    console.log(product);
+    displayValueFinal(product)
 } ;
 
 function divide(num1,num2) {
@@ -68,7 +78,7 @@ function divide(num1,num2) {
         alert('Error, dividing by 0 is hard');
     } {
     let quotient = num1/num2;
-    console.log(quotient);
+    displayValueFinal(quotient)
     }
 };
 
